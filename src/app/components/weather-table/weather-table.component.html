@@ -1,0 +1,65 @@
+<div class="container">
+  <p class="center">Note: You can only check upto 16 days further from today.</p>
+  <br/>
+  <div class="row">
+
+    <div class="col s9">
+      <div style="display: block;">
+        <canvas baseChart width="400" height="300"
+        [datasets]="lineChartData"
+        [labels]="lineChartLabels"
+        [options]="lineChartOptions"
+        [colors]="lineChartColors"
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType"></canvas>
+      </div>
+    </div>
+    <div class="col s3">
+      <br/>
+      <span style="font-weight: bold">City</span>
+      <select #SelectCity (change)="this.getWeatherCity(SelectCity.value)">
+        <option value="4013704" selected>Ciudad Obregón</option>
+        <option value="3995019">Navojoa</option>
+        <option value="4004898">Hermosillo</option>
+        <option value="4004886">Nogales</option>
+      </select>
+
+      <span style="font-weight: bold; margin-top: 40px;">Scale</span>
+      <select #SelectScale (change)="this.getScale(SelectScale.value)">
+        <option value="C" selected>Celsius</option>
+        <option value="F">Fahrenheit</option>
+      </select>
+      <br/>
+      <span style="font-weight: bold">Start Date</span>
+      <input type="text" class="datepicker" #startDate 
+      (change)="this.selectedDates(startDate.value, 0)">
+
+      <span style="font-weight: bold">End Date</span>
+      <input type="text" class="datepicker" #endDate 
+      (change)="this.selectedDates(endDate.value, 1)">
+    </div>
+
+  </div>
+  <div class="row">
+    <p class="yellow">{{wDate.warningMsg}}</p>
+    <div class="col s5"></div>
+    <div class="col s4">
+      <table class="table striped">
+        <thead style="background-color: lightgray;">
+          <tr>
+            <th>Date</th>
+            <th>Temperature °({{tempScale}})</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of weatherData">
+            <td *ngIf="data.snow == 1">{{data.datetime}}</td>
+            <td *ngIf="data.snow == 1">{{data.temp|number:0}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col s3"></div>
+
+  </div>
+</div>

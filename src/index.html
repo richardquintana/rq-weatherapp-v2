@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <!-- Author: Ricardo Quintana -->
+  <title>Weather Dashboard</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Materialize CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+</head>
+<body>
+  <app-root></app-root>
+  <!-- Materialize JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var elems = document.querySelectorAll('select');
+      var instances = M.FormSelect.init(elems);
+
+      var elemsDP = document.querySelectorAll('.datepicker');
+      var instances = M.Datepicker.init(elemsDP);
+      M.Datepicker.init(elemsDP, {
+        format: 'mm/dd/yyyy'
+      });
+    });
+  </script>
+  <script src="node_modules/chart.js/dist/chart.js"></script>
+</body>
+</html>
